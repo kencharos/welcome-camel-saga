@@ -1,0 +1,13 @@
+services:
+  lra-coordinator:
+    platform: linux/x86_64
+    image: quay.io/jbosstm/lra-coordinator:latest
+    ports:
+      - '8081:8080'
+  pubsub:
+    image: messagebird/gcloud-pubsub-emulator:latest
+    ports:
+      - '8681:8681'
+    environment:
+      PUBSUB_PROJECT1: 'pj-local,service-a-topic:service-a-subscription,service-b-topic:service-b-subscription'
+      TZ: UTC
