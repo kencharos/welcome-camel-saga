@@ -29,7 +29,7 @@ public class RouteB extends RouteBuilder {
         // saga transactionを復元するため、PubSub Attributeから LRA 値を取得して所定のヘッダに設定してから Saga を開始する
         from("google-pubsub:{{app.pubsub_project}}:service-b-subscription")
                 .routeId("service-b-continue-saga")
-                .setHeadergi(SagaConstants.SAGA_LONG_RUNNING_ACTION,
+                .setHeader(SagaConstants.SAGA_LONG_RUNNING_ACTION,
                         simple("${headers." + GooglePubsubConstants.ATTRIBUTES +"[" + SagaConstants.SAGA_LONG_RUNNING_ACTION +"]}"))
                 .to("direct:service-b");
         //@formatter:off
